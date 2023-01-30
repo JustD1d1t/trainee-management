@@ -1,7 +1,7 @@
 <template>
   <div>
     <UsersList :users="paginatedUsers" @input="search($event)" />
-    <Pagination v-if="users.length" :pages="totalPages" />
+    <Pagination v-if="paginatedUsers.length" :pages="paginatedPages" />
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       loadedUsers: [],
-    }
+    };
   },
   computed: {
     ...mapGetters("usersModule", ["users", "totalPages"]),
@@ -22,18 +22,23 @@ export default {
       return this.$route.query.page;
     },
     paginatedUsers() {
+      const users = this.loadedUsers.length ? this.loadedUsers : this.users;
       return this.pageNumber === undefined || this.pageNumber == 1
-        ? this.loadedUsers.slice(0, 6)
-        : this.loadedUsers.slice(
+        ? users.slice(0, 6)
+        : users.slice(
             6 + 6 * (Number(this.pageNumber) - 2),
             6 + 6 * (Number(this.pageNumber) - 1)
           );
     },
+    paginatedPages() {
+      const users = this.loadedUsers.length ? this.loadedUsers : this.users;
+      return Math.ceil(users.length / 6);
+    }
   },
   watch: {
     users() {
       this.loadedUsers = this.users;
-    }
+    },
   },
   methods: {
     ...mapActions("usersModule", {
@@ -42,7 +47,9 @@ export default {
     search(e) {
       if (e) {
         const filteredUsers = this.users.filter(
-          (user) => user.last_name.toLowerCase().includes(e.toLowerCase()) || user.first_name.toLowerCase().includes(e.toLowerCase())
+          (user) =>
+            user.last_name.toLowerCase().includes(e.toLowerCase()) ||
+            user.first_name.toLowerCase().includes(e.toLowerCase())
         );
         this.loadedUsers = filteredUsers;
       } else {

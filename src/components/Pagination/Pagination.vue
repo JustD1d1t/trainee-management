@@ -32,7 +32,7 @@ export default {
       return parseFloat(this.$route.query.page) - 1;
     },
     disabledPrevPage() {
-      return parseFloat(this.$route.query.page) === 1;
+      return parseFloat(this.$route.query.page) === 1 || !this.$route.query.page;
     },
     disabledNextPage() {
       return parseFloat(this.$route.query.page) === this.pages;
