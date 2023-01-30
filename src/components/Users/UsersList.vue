@@ -68,20 +68,22 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
 }
+
+.users-list__avatar {
+  width: 20%;
+  margin-right: 0.5rem;
+}
+.users-list__fullname {
+  width: 70%;
+}
+
 .users-list {
   list-style: none;
   padding-left: 0;
 }
-.users-list__avatar {
-  width: 10%;
-}
-.users-list__fullname {
-  width: 80%;
-}
-.users-list__action {
-  width: 10%;
-}
+
 .users-list__description-cols {
   display: flex;
   padding: 1rem;
@@ -95,5 +97,21 @@ export default {
 }
 .add-user-button {
   font-size: 16px;
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 767px) {
+  .users-list__actions {
+    flex-direction: row;
+  }
+  .users-list__avatar {
+    width: 10%;
+  }
+  .users-list__fullname {
+    width: 80%;
+  }
+  .users-list__action {
+    width: 10%;
+  }
 }
 </style>

@@ -44,6 +44,8 @@ export default {
 <style scoped>
 .pagination {
   padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
 }
 .pagination-button {
   width: 30px;
@@ -69,5 +71,11 @@ export default {
 .pagination-button.active {
   background-color: rgb(24, 107, 24);
   color: white;
+}
+
+@media screen and (min-width: 1199px) {
+  .pagination {
+    justify-content: flex-start;
+  }
 }
 </style>

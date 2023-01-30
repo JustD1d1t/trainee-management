@@ -30,7 +30,9 @@
           />
         </Box>
       </div>
-      <UIButton type="submit" class="primary-button submit-form-button">Submit</UIButton>
+      <UIButton type="submit" class="primary-button submit-form-button"
+        >Submit</UIButton
+      >
     </form>
   </div>
 </template>
@@ -69,13 +71,13 @@ export default {
       addUser: "addUser",
     }),
     async onSubmit() {
-      if(!this.updatedFirstName.length && !this.updatedLastName.length) {
+      if (!this.updatedFirstName.length && !this.updatedLastName.length) {
         this.show = true;
-        this.content = "Uzupełnij pola i wstaw zdjęcie"
+        this.content = "Uzupełnij pola i wstaw zdjęcie";
         setTimeout(() => {
           this.show = false;
         }, 2000);
-        return
+        return;
       }
       if (this.method === "PATCH") {
         const updated = await this.editUser({
@@ -122,5 +124,89 @@ export default {
 ::v-deep .submit-form-button {
   margin-top: 1rem;
   cursor: pointer;
+  margin: 1rem auto 0 auto;
+}
+
+.add-user__form-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.add-user__image {
+  width: 36%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-user__image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  margin-bottom: 3rem;
+}
+
+.add-user__details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 40px;
+}
+.add-user__input {
+  flex-grow: 1;
+}
+.add-user__image {
+  width: 100%;
+}
+.custom-file-input::before {
+  content: "Change photo";
+  display: inline-block;
+  background: white;
+  color: black;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+}
+::v-deep input[type="file"] {
+  display: none;
+}
+::v-deep .custom-file-upload label {
+  cursor: pointer;
+  margin-bottom: 0;
+  padding: 6px 12px;
+}
+
+@media screen and (min-width: 991px) {
+  .add-user__form-wrapper {
+    flex-direction: row;
+  }
+  .add-user__details {
+    width: 61%;
+    flex-direction: row;
+  }
+  .add-user__image {
+    width: 36%;
+  }
+  ::v-deep .submit-form-button {
+    margin: 1rem 0 0 0;
+  }
 }
 </style>

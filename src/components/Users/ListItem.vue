@@ -49,14 +49,16 @@ export default {
   background-color: rgba(187, 171, 171, 0.7);
 }
 .user-list-item__logo {
-  width: 10%;
+  width: 20%;
+  margin-right: 0.5rem;
 }
 .user-list-item__fullname {
-  width: 80%;
+  width: 70%;
 }
 .user-list-item__actions {
-  width: 10%;
+  display: flex;
 }
+
 .user-list-item__logo img {
   border-radius: 100%;
   width: 50px;
@@ -64,9 +66,23 @@ export default {
 }
 .user-list-item__action {
   color: rgb(182, 161, 161);
-  margin-right: 1rem;
   border: none;
   background: transparent;
   cursor: pointer;
+}
+.user-list-item__action:not(:last-child){
+  margin-right: 0.5rem;
+}
+
+@media screen and (min-width: 767px) {
+  .user-list-item__logo {
+    width: 10%;
+  }
+  .user-list-item__fullname {
+    width: 80%;
+  }
+  .user-list-item__actions {
+    width: 10%;
+  }
 }
 </style>
